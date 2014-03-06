@@ -12,12 +12,12 @@
         <asp:ValidationSummary ID="NewValidationGroupSummary" runat="server" CssClass="failureNotification" 
             ValidationGroup="NewValidationGroup"/>
 
-    <table class="table table-responsive ">
+    <table class="table table-responsive">
         <tr>
             <th>
             <asp:Label ID="Label1" runat="server" Text="Topic"></asp:Label>
             </th><td>
-            <asp:TextBox ID="txtTopic" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtTopic" runat="server" CssClass="long-input" ></asp:TextBox>
             <asp:RequiredFieldValidator ID="TopicRequired" runat="server" ControlToValidate="txtTopic" 
                         CssClass="failureNotification" ErrorMessage="Topic is required." 
                        ValidationGroup="NewValidationGroup"><span class="text-danger">Topic is required. </span></asp:RequiredFieldValidator>
@@ -25,16 +25,16 @@
         </tr>
         <tr>
             <th>
-            <asp:Label ID="Label6" runat="server" Text="Password (Optional)"></asp:Label>
+            <asp:Label ID="Label6" runat="server" Text="Password (Optional)" ></asp:Label>
             </th><td>
-            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="long-input"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <th>
             <asp:Label ID="Label2" runat="server" Text="Date and Time"></asp:Label>
             </th><td>
-            <asp:TextBox ID="txtDateTime" runat="server" placeholder="format: YYYY-MM-DD  HH:MM:SS"></asp:TextBox>
+            <asp:TextBox ID="txtDateTime" runat="server" placeholder="YYYY-MM-DD  HH:MM:SS" CssClass="long-input"></asp:TextBox>
             </td>
         </tr>
         <tr>
