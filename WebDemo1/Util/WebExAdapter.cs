@@ -177,15 +177,32 @@ namespace WebDemo1.Util
         public int CreateMeeting(Meeting meet)
         {
 
+            XElement elemAccessControl = new XElement("accessControl", new XElement("meetingPassword", meet.Password));
+            XElement elemMetaData = new XElement("metaData", new XElement("confName", meet.ConfName)
+                                                           , new XElement("agenda", meet.Agenda));
+            XElement elemParticipant = new XElement("participants",
+                                            new XElement("attendees",
+                                                meet.Attendees.Select(em => new XElement("attendee", new XElement("person",
+                                                                                                        new XElement("email", em)
+                                                                                                                )
+                                                                                        )
+                                                                    )
+                                                        )
+                                                    );
+
+            XElement elemEnableOption = new XElement("enableOptions", new[] { "chat", "poll", "audioVideo" }.Select(e => new XElement(e, "true")));
+            XElement elemSchedule = new XElement("schedule",
+                                           new XElement("startDate", meet.StartDate.ToString(dateFormat,CultureInfo.InvariantCulture)),
+                                           new XElement("duration", meet.Duration)
+                                           );
 
 
-            var bodyContentElem = new XElement(strBodyContent, new XElement("meetingKey", meetingKey));
+            var bodyContentElem = new XElement(strBodyContent,elemAccessControl,elemMetaData,elemParticipant,elemEnableOption,elemSchedule);
 
-
-
-            string xml = XMLUtil.GetFullXML(bodyContentElem, joinAsHost ? strReqHostUrl : strReqJoinUrl);
+            string xml = XMLUtil.GetFullXML(bodyContentElem,strReqCreateMeeting);
+            System.IO.File.WriteAllText("C:/ztmp/req3.xml", xml);
             string result = new RequestManager().GetResponse(xml);
-            System.IO.File.WriteAllText("C:/ztmp/aa2.xml", result);
+            System.IO.File.WriteAllText("C:/ztmp/aa3.xml", result);
 
             XDocument doc = XDocument.Parse(result);
             WebExErrorDetails err = GetErrorDetails(doc);
@@ -198,11 +215,9 @@ namespace WebDemo1.Util
 
             XElement elemContent = doc.Descendants(nsServ + "bodyContent").FirstOrDefault();
 
-            string nodeName = joinAsHost ? "hostMeetingURL" : "joinMeetingURL";
+            int meetingID = int.Parse(elemContent.Element(nsMeet + "meetingkey").Value);
 
-            string url = elemContent.Element(nsMeet + nodeName).Value;
-
-            return url;
+            return meetingID;
 
         }
     }

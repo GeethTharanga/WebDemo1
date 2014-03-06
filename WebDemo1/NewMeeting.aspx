@@ -64,7 +64,9 @@
         </tr>
     </table>
     <div>
-        <asp:Button ID="btnCreate" runat="server" Text="Create Meeting" class="btn btn-primary" ValidationGroup="NewValidationGroup" />
+        <asp:Button ID="btnCreate" runat="server" Text="Create Meeting" 
+            class="btn btn-primary" ValidationGroup="NewValidationGroup" 
+            onclick="btnCreate_Click" />
         <a href="Default.aspx" class="btn btn-warning">Back</a>
     </div>
     

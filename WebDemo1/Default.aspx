@@ -13,6 +13,11 @@
       <span runat="server" ID="spanError">No key specified</span>
     </div>
 
+    <div class="alert alert-success" runat="server" ID="DivSuccess" visible="false">
+      <h3>Success</h3>
+      <span runat="server" ID="spanSuccess">Meeting Created successfully</span>
+    </div>
+
     <div runat="server" ID="DivResults">
         <table class="table table-striped">
             <thead>

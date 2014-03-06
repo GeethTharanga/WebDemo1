@@ -12,6 +12,18 @@ namespace WebDemo1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //success message of create meeting
+            if (Session["create_success"] != null)
+            {
+                DivSuccess.Visible = true;
+                Session.Remove("create_success");
+            }
+            else
+            {
+                DivSuccess.Visible = false;
+            }
+
+
             try
             {
                 repMeeting.DataSource = new WebExAdapter().GetMeetingList();
