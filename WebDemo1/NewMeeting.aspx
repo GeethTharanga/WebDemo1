@@ -4,8 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h3>       New Meeting   </h3>
 
-    <div class="alert alert-warning" runat="server" ID="DivError" visible="false">
-      <h3>Error occured</h3>
+    <div class="alert alert-danger" runat="server" ID="DivError" visible="false">
+      <strong>Error occured</strong> <br />
       <span runat="server" ID="spanError"></span>
     </div>
 

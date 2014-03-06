@@ -3,8 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
-    <div class="alert alert-warning" runat="server" ID="DivError" visible="false">
-      <h3>Error occured</h3>
+    <div class="alert alert-danger" runat="server" ID="DivError" visible="false">
+      <strong>Error occured</strong><br />
       <span runat="server" ID="spanError">No key specified</span>
     </div>
     <div class="panel panel-info" runat="server" ID="DivInfo">
