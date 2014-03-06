@@ -47,6 +47,6 @@
         </table>
     </div>
     <p>
-    <a href="NewMeeting.aspx" class="btn btn-success">Create Meeting</a>
+    <a href="NewMeeting.aspx" class="btn btn-success">Create new Meeting</a>
     </p>
 </asp:Content>
