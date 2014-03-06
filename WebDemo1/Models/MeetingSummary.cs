@@ -12,5 +12,6 @@ namespace WebDemo1.Models
         public string HostWebExID { get; set; }
         public DateTime StartDate { get; set; }
         public int Duration { get; set; }
+
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebDemo1.Util;
 
 namespace WebDemo1
 {
@@ -11,7 +12,8 @@ namespace WebDemo1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            repMeeting.DataSource = new WebExAdapter().GetMeetingList();
+            repMeeting.DataBind();
         }
     }
 }
