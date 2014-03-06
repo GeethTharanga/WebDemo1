@@ -25,7 +25,7 @@ namespace WebDemo1
                 try
                 {
                     Meeting meet = new WebExAdapter().GetMeeting(key);
-
+                    
                     spanMeetingName.InnerText = meet.ConfName;
                     spanMeetingKey.InnerText = meet.MeetingKey.ToString();
                     spanMeetingDate.InnerText = meet.StartDate.ToString();
@@ -33,6 +33,8 @@ namespace WebDemo1
                     spanMeetingDuration.InnerText = meet.Duration.ToString() + " minutes";
                     spanMeetingAttendees.InnerText = string.Join(", ", meet.Attendees);
 
+                    hrefGuest.HRef = "RedirToMeeting.aspx?key=" + meet.MeetingKey;
+                    hrefHost.HRef = "RedirToMeeting.aspx?ashost=true&key=" + meet.MeetingKey;
                 }
                 catch (WebExException err)
                 {

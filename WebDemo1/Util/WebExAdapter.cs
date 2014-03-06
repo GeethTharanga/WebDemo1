@@ -34,13 +34,20 @@ namespace WebDemo1.Util
 
         const string strReqMeetingList = "java:com.webex.service.binding.meeting.LstsummaryMeeting";
         const string strReqMeeting = "java:com.webex.service.binding.meeting.GetMeeting";
+        const string strReqHostUrl = "java:com.webex.service.binding.meeting.GethosturlMeeting";
+        const string strReqJoinUrl = "java:com.webex.service.binding.meeting.GetjoinurlMeeting";
+        const string strReqCreateMeeting = "java:com.webex.service.binding.meeting.CreateMeeting";
 
         const string strNamespaceServ = "http://www.webex.com/schemas/2002/06/service", 
             strNamespaceMeet = "http://www.webex.com/schemas/2002/06/service/meeting",
             strNamespaceCom = "http://www.webex.com/schemas/2002/06/common",
             strNamespaceAtt ="http://www.webex.com/schemas/2002/06/service/attendee";
 
-
+        /// <summary>
+        /// Check if the request is valid
+        /// </summary>
+        /// <param name="xdoc"></param>
+        /// <returns>Error if request failed, null on successful request</returns>
         private WebExErrorDetails GetErrorDetails(XDocument xdoc)
         {
             XNamespace nsServ = strNamespaceServ;
@@ -61,6 +68,10 @@ namespace WebDemo1.Util
 
         }
 
+        /// <summary>
+        /// Get the complete list of meetings
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<MeetingSummary> GetMeetingList()
         {
             var bodyContentElem = new XElement(strBodyContent);
@@ -92,6 +103,11 @@ namespace WebDemo1.Util
         }
 
 
+        /// <summary>
+        /// Get a meeting by ID
+        /// </summary>
+        /// <param name="meetingKey"></param>
+        /// <returns></returns>
         public Meeting GetMeeting(int meetingKey)
         {
             var bodyContentElem = new XElement(strBodyContent, new XElement("meetingKey",meetingKey));
@@ -124,6 +140,69 @@ namespace WebDemo1.Util
                                                 .Element(nsCom + "email").Value)
                                          .ToList();
             return meet;
+
+        }
+
+        public string GetUrlOfMeeting(bool joinAsHost,int meetingKey)
+        {
+            var bodyContentElem = new XElement(strBodyContent, new XElement("meetingKey", meetingKey));
+            string xml = XMLUtil.GetFullXML(bodyContentElem, joinAsHost ? strReqHostUrl : strReqJoinUrl);
+            string result = new RequestManager().GetResponse(xml);
+            System.IO.File.WriteAllText("C:/ztmp/aa2.xml", result);
+
+            XDocument doc = XDocument.Parse(result);
+            WebExErrorDetails err = GetErrorDetails(doc);
+            if (err != null)
+            {
+                throw new WebExException(err);
+            }
+            XNamespace nsMeet = strNamespaceMeet;
+            XNamespace nsServ = strNamespaceServ;
+
+            XElement elemContent = doc.Descendants(nsServ + "bodyContent").FirstOrDefault();
+
+            string nodeName = joinAsHost ? "hostMeetingURL" :"joinMeetingURL";
+
+            string url = elemContent.Element(nsMeet + nodeName).Value;
+
+            return url;
+
+        }
+
+        /// <summary>
+        /// Create a meeting
+        /// </summary>
+        /// <param name="meet"></param>
+        /// <returns>Meeting key</returns>
+        public int CreateMeeting(Meeting meet)
+        {
+
+
+
+            var bodyContentElem = new XElement(strBodyContent, new XElement("meetingKey", meetingKey));
+
+
+
+            string xml = XMLUtil.GetFullXML(bodyContentElem, joinAsHost ? strReqHostUrl : strReqJoinUrl);
+            string result = new RequestManager().GetResponse(xml);
+            System.IO.File.WriteAllText("C:/ztmp/aa2.xml", result);
+
+            XDocument doc = XDocument.Parse(result);
+            WebExErrorDetails err = GetErrorDetails(doc);
+            if (err != null)
+            {
+                throw new WebExException(err);
+            }
+            XNamespace nsMeet = strNamespaceMeet;
+            XNamespace nsServ = strNamespaceServ;
+
+            XElement elemContent = doc.Descendants(nsServ + "bodyContent").FirstOrDefault();
+
+            string nodeName = joinAsHost ? "hostMeetingURL" : "joinMeetingURL";
+
+            string url = elemContent.Element(nsMeet + nodeName).Value;
+
+            return url;
 
         }
     }

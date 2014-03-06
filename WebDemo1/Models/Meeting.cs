@@ -15,6 +15,7 @@ namespace WebDemo1.Models
 
 
         public string Agenda { get; set; }
-        public IEnumerable<string> Attendees { get; set; } 
+        public IEnumerable<string> Attendees { get; set; }
+        public string Password { get; set; }
     }
 }

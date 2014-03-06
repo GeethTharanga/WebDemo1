@@ -2,11 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <br />
     
     <div class="alert alert-warning" runat="server" ID="DivError" visible="false">
-      <h4>Error occured</h3>
+      <h3>Error occured</h3>
       <span runat="server" ID="spanError">No key specified</span>
     </div>
     <div class="panel panel-info" runat="server" ID="DivInfo">
@@ -43,9 +41,9 @@
                 </p>
             </section>
              <section class="col-md-4">
-             <a href ="#" class="btn btn-primary" > Join as host</a>
+             <a href ="#" class="btn btn-primary" ID="hrefHost" runat="server"> Join as host</a>
              <br /><br />
-             <a href ="#" class="btn btn-primary" > Join as Guest</a>
+             <a href ="#" class="btn btn-primary" ID="hrefGuest" runat="server"> Join as Guest</a>
              </section>
             </div>
          </div>

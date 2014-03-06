@@ -12,8 +12,17 @@ namespace WebDemo1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            repMeeting.DataSource = new WebExAdapter().GetMeetingList();
-            repMeeting.DataBind();
+            try
+            {
+                repMeeting.DataSource = new WebExAdapter().GetMeetingList();
+                repMeeting.DataBind();
+            }
+            catch (WebExException ex)
+            {
+                DivError.Visible = true;
+                spanError.InnerText = ex.Message;
+                DivResults.Visible = false;
+            }
         }
     }
 }

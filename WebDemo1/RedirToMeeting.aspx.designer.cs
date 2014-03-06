@@ -10,7 +10,7 @@
 namespace WebDemo1 {
     
     
-    public partial class _Default {
+    public partial class redirToMeeting {
         
         /// <summary>
         /// DivError control.
@@ -29,23 +29,5 @@ namespace WebDemo1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanError;
-        
-        /// <summary>
-        /// DivResults control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivResults;
-        
-        /// <summary>
-        /// repMeeting control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repMeeting;
     }
 }
