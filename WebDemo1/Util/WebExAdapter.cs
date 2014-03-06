@@ -32,9 +32,13 @@ namespace WebDemo1.Util
         const string strBodyContent = "bodyContent";
         const string dateFormat = "MM/dd/yyyy HH:mm:ss";
 
-        const string strReqMeelingList = "java:com.webex.service.binding.meeting.LstsummaryMeeting";
+        const string strReqMeetingList = "java:com.webex.service.binding.meeting.LstsummaryMeeting";
+        const string strReqMeeting = "java:com.webex.service.binding.meeting.GetMeeting";
 
-        const string strNamespaceServ = "http://www.webex.com/schemas/2002/06/service", strNamespaceMeet = "http://www.webex.com/schemas/2002/06/service/meeting";
+        const string strNamespaceServ = "http://www.webex.com/schemas/2002/06/service", 
+            strNamespaceMeet = "http://www.webex.com/schemas/2002/06/service/meeting",
+            strNamespaceCom = "http://www.webex.com/schemas/2002/06/common",
+            strNamespaceAtt ="http://www.webex.com/schemas/2002/06/service/attendee";
 
 
         private WebExErrorDetails GetErrorDetails(XDocument xdoc)
@@ -60,11 +64,8 @@ namespace WebDemo1.Util
         public IEnumerable<MeetingSummary> GetMeetingList()
         {
             var bodyContentElem = new XElement(strBodyContent);
-
-            string xml = XMLUtil.GetFullXML(bodyContentElem, strReqMeelingList);
-
+            string xml = XMLUtil.GetFullXML(bodyContentElem, strReqMeetingList);
             string result = new RequestManager().GetResponse(xml);
-
             System.IO.File.WriteAllText("C:/ztmp/aa.xml", result);
 
 
@@ -88,6 +89,42 @@ namespace WebDemo1.Util
                                     }).ToList();
            
            return nodes;
+        }
+
+
+        public Meeting GetMeeting(int meetingKey)
+        {
+            var bodyContentElem = new XElement(strBodyContent, new XElement("meetingKey",meetingKey));
+            string xml = XMLUtil.GetFullXML(bodyContentElem, strReqMeeting);
+            string result = new RequestManager().GetResponse(xml);
+            System.IO.File.WriteAllText("C:/ztmp/aa2.xml", result);
+
+            XDocument doc = XDocument.Parse(result);
+            WebExErrorDetails err = GetErrorDetails(doc);
+            if (err != null)
+            {
+                throw new WebExException(err);
+            }
+            XNamespace nsMeet = strNamespaceMeet, nsAtt = strNamespaceAtt;
+            XNamespace nsServ = strNamespaceServ, nsCom = strNamespaceCom;
+            Meeting meet = new Meeting();
+
+            XElement elemContent = doc.Descendants(nsServ + "bodyContent").FirstOrDefault();
+
+            meet.ConfName = elemContent.Element(nsMeet + "metaData").Element(nsMeet + "confName").Value;
+            meet.MeetingKey = int.Parse(elemContent.Element(nsMeet + "meetingkey").Value);
+            meet.HostWebExID = elemContent.Element(nsMeet + "schedule").Element(nsMeet + "hostWebExID").Value;
+            meet.StartDate = DateTime.ParseExact(elemContent.Element(nsMeet + "schedule").Element(nsMeet + "startDate").Value
+                                                     ,dateFormat,CultureInfo.InvariantCulture)   ;
+            meet.Duration = int.Parse(elemContent.Element(nsMeet + "schedule").Element(nsMeet + "duration").Value);
+
+            meet.Attendees = elemContent.Element(nsMeet + "participants").Element(nsMeet + "attendees")
+                                        .Elements(nsMeet + "attendee")
+                                        .Select(attendeeElem => attendeeElem.Element(nsAtt + "person")
+                                                .Element(nsCom + "email").Value)
+                                         .ToList();
+            return meet;
+
         }
     }
 }

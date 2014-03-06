@@ -56,12 +56,14 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="NewMeeting.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="ViewMeeting.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -118,6 +120,13 @@
     </Compile>
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingSummary.cs" />
+    <Compile Include="NewMeeting.aspx.cs">
+      <DependentUpon>NewMeeting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewMeeting.aspx.designer.cs">
+      <DependentUpon>NewMeeting.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -129,6 +138,13 @@
     <Compile Include="Util\RequestManager.cs" />
     <Compile Include="Util\WebExAdapter.cs" />
     <Compile Include="Util\XMLUtil.cs" />
+    <Compile Include="ViewMeeting.aspx.cs">
+      <DependentUpon>ViewMeeting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewMeeting.aspx.designer.cs">
+      <DependentUpon>ViewMeeting.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
