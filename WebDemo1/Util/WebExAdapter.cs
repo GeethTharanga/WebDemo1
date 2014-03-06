@@ -41,9 +41,9 @@ namespace WebDemo1.Util
         {
             XNamespace nsServ = strNamespaceServ;
 
-            XElement respNode = xdoc.Element(nsServ + "response");
+            XElement respNode = xdoc.Descendants(nsServ + "response").FirstOrDefault();
 
-            if (respNode.Element(nsServ + "result").Value != "FAILURE")
+            if (respNode != null && respNode.Element(nsServ + "result").Value != "FAILURE")
             {
                 return null;
             }
@@ -56,7 +56,6 @@ namespace WebDemo1.Util
             }
 
         }
-
 
         public IEnumerable<MeetingSummary> GetMeetingList()
         {
@@ -87,7 +86,8 @@ namespace WebDemo1.Util
                                         StartDate = DateTime.ParseExact(elem.Element(nsMeet + "startDate").Value, dateFormat, CultureInfo.InvariantCulture),
                                         Duration = int.Parse(elem.Element(nsMeet + "duration").Value)
                                     }).ToList();
-                        return nodes;
+           
+           return nodes;
         }
     }
 }
