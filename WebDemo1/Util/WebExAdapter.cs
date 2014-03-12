@@ -37,6 +37,8 @@ namespace WebDemo1.Util
         const string strReqHostUrl = "java:com.webex.service.binding.meeting.GethosturlMeeting";
         const string strReqJoinUrl = "java:com.webex.service.binding.meeting.GetjoinurlMeeting";
         const string strReqCreateMeeting = "java:com.webex.service.binding.meeting.CreateMeeting";
+        const string strReqUpdateMeeting = "java:com.webex.service.binding.meeting.SetMeeting";
+        const string strReqCreateAttendee = "java:com.webex.service.binding.attendee.CreateMeetingAttendee";
 
         const string strNamespaceServ = "http://www.webex.com/schemas/2002/06/service", 
             strNamespaceMeet = "http://www.webex.com/schemas/2002/06/service/meeting",
@@ -220,5 +222,72 @@ namespace WebDemo1.Util
             return meetingID;
 
         }
+
+        public bool UpdateMeeting(Meeting meet) 
+        {
+            bool success = true;
+            XElement elemMetaData = new XElement("metaData", new XElement("confName", meet.ConfName)
+                                                           , new XElement("agenda", meet.Agenda));
+
+            XElement elemParticipant = new XElement("participants",
+                                            new XElement("attendees",
+                                                meet.Attendees.Select(em => new XElement("attendee", new XElement("person",
+                                                                                                        new XElement("email", em)
+                                                                                                                )
+                                                                                        )
+                                                                    )
+                                                        )
+                                                    );
+
+            XElement elemEnableOption = new XElement("enableOptions", new[] { "chat", "poll", "audioVideo" }.Select(e => new XElement(e, "true")));
+
+            XElement elemSchedule = new XElement("schedule",
+                                           new XElement("startDate", meet.StartDate.ToString(dateFormat, CultureInfo.InvariantCulture)),
+                                           new XElement("duration", meet.Duration)
+                                           );
+
+            XElement elemMeetingKey = new XElement("meetingkey", meet.MeetingKey);
+
+            var bodyContentElem = new XElement(strBodyContent,elemMetaData,elemParticipant,elemEnableOption,elemSchedule,elemMeetingKey);
+
+            string xml = XMLUtil.GetFullXML(bodyContentElem, strReqUpdateMeeting);
+            System.IO.File.WriteAllText("C:/ztmp/req4.xml", xml);
+            string result = new RequestManager().GetResponse(xml);
+            System.IO.File.WriteAllText("C:/ztmp/aa4.xml", result);
+
+            XDocument doc = XDocument.Parse(result);
+            WebExErrorDetails err = GetErrorDetails(doc);
+
+            if (err != null)
+            {
+                throw new WebExException(err);
+            }
+
+            return success;
+        }
+
+        public bool CreateAttendee(string name, string email, string meetingKey) { 
+
+            bool success= true;
+
+            XElement elemPerson = new XElement("person", new XElement("name", name), new XElement("email",email));
+
+            XElement elemMeetingKey = new XElement("meetingKey",meetingKey);
+
+            var bodyContentElem = new XElement(strBodyContent,elemPerson,elemMeetingKey);
+
+            string xml = XMLUtil.GetFullXML(bodyContentElem, strReqCreateAttendee);
+            string result = new RequestManager().GetResponse(xml);
+            XDocument doc = XDocument.Parse(result);
+
+            WebExErrorDetails err = GetErrorDetails(doc);
+
+            if (err != null)
+            {
+                throw new WebExException(err);
+            }
+
+            return success;
+        } 
     }
 }

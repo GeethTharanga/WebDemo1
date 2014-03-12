@@ -10,7 +10,7 @@
 namespace WebDemo1 {
     
     
-    public partial class ViewMeeting {
+    public partial class WebForm1 {
         
         /// <summary>
         /// DivError control.
@@ -31,102 +31,138 @@ namespace WebDemo1 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanError;
         
         /// <summary>
-        /// DivInfo control.
+        /// Label0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivInfo;
+        protected global::System.Web.UI.WebControls.Label Label0;
         
         /// <summary>
-        /// spanMeetingKey control.
+        /// txtMeetingKey control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanMeetingKey;
+        protected global::System.Web.UI.WebControls.TextBox txtMeetingKey;
         
         /// <summary>
-        /// spanMeetingName control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanMeetingName;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// spanMeetingWebexID control.
+        /// txtTopic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanMeetingWebexID;
+        protected global::System.Web.UI.WebControls.TextBox txtTopic;
         
         /// <summary>
-        /// spanMeetingDate control.
+        /// Label6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanMeetingDate;
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// spanMeetingDuration control.
+        /// txtPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanMeetingDuration;
+        protected global::System.Web.UI.WebControls.TextBox txtPassword;
         
         /// <summary>
-        /// spanMeetingAttendees control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanMeetingAttendees;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// hrefHost control.
+        /// txtDateTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor hrefHost;
+        protected global::System.Web.UI.WebControls.TextBox txtDateTime;
         
         /// <summary>
-        /// hrefGuest control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor hrefGuest;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// hrefAttendee control.
+        /// txtDuration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor hrefAttendee;
+        protected global::System.Web.UI.WebControls.TextBox txtDuration;
         
         /// <summary>
-        /// HrefUpdate control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor HrefUpdate;
+        protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
+        /// txtAttendees control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAttendees;
+        
+        /// <summary>
+        /// Label5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5;
+        
+        /// <summary>
+        /// txtAgenda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAgenda;
+        
+        /// <summary>
+        /// btnUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
     }
 }

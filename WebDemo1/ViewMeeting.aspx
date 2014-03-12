@@ -44,11 +44,14 @@
              <a href ="#" class="btn btn-primary" ID="hrefHost" runat="server"> Join as host</a>
              <br /><br />
              <a href ="#" class="btn btn-primary" ID="hrefGuest" runat="server"> Join as Guest</a>
+             <br /><br />
+             <a href = "CreateAttendee.aspx" class="btn btn-success" runat="server" ID ="hrefAttendee">Create an Attendee</a>
              </section>
             </div>
          </div>
     </div>
-    <section class="btn-group">
+    <section>
     <a href="Default.aspx" class="btn btn-success">View all Meetings</a>
+    <a href="Update.aspx" class="btn btn-success" runat="server" ID="HrefUpdate">Update meeting</a>
     </section>
 </asp:Content>

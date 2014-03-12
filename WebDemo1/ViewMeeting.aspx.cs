@@ -22,6 +22,7 @@ namespace WebDemo1
             }
             else
             {
+                HrefUpdate.HRef = "Update.aspx?key=" + key;
                 try
                 {
                     Meeting meet = new WebExAdapter().GetMeeting(key);
@@ -35,6 +36,8 @@ namespace WebDemo1
 
                     hrefGuest.HRef = "RedirToMeeting.aspx?key=" + meet.MeetingKey;
                     hrefHost.HRef = "RedirToMeeting.aspx?ashost=true&key=" + meet.MeetingKey;
+                    hrefAttendee.HRef = "CreateAttendee.aspx?key=" + meet.MeetingKey;
+                    
                 }
                 catch (WebExException err)
                 {

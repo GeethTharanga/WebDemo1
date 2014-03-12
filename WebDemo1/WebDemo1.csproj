@@ -56,8 +56,10 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="CreateAttendee.aspx" />
     <Content Include="NewMeeting.aspx" />
     <Content Include="RedirToMeeting.aspx" />
+    <EmbeddedResource Include="Resources\XMLFile.xml" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -74,6 +76,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Update.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -110,6 +113,13 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateAttendee.aspx.cs">
+      <DependentUpon>CreateAttendee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateAttendee.aspx.designer.cs">
+      <DependentUpon>CreateAttendee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -154,6 +164,13 @@
     </Compile>
     <Compile Include="ViewMeeting.aspx.designer.cs">
       <DependentUpon>ViewMeeting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Update.aspx.cs">
+      <DependentUpon>Update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Update.aspx.designer.cs">
+      <DependentUpon>Update.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

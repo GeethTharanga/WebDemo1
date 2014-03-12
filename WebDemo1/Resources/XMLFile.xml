@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<serv:message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:serv="http://www.webex.com/schemas/2002/06/service">
+  <header>
+    <securityContext>
+      <webExID></webExID>
+      <password></password>
+      <siteID></siteID>
+      <partnerID></partnerID>
+      <email></email>
+    </securityContext>
+  </header>
+  <body>
+  </body>
+</serv:message>

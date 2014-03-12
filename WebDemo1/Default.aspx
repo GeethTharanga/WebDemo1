@@ -9,7 +9,7 @@
     </h2>
 
     <div class="alert alert-danger" runat="server" ID="DivError" visible="false">
-      <strong>Error occured</strong> </br>
+      <strong>Error occured</strong> 
       <span runat="server" ID="spanError">placeholder for error</span>
     </div>
 
