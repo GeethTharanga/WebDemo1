@@ -24,11 +24,15 @@ namespace WebDemo1
                 {
                     string url = new WebExAdapter().GetUrlOfMeeting(asHost, key);
 
-                    Response.Redirect(url);
+                    IFrameWebex.Attributes.Add("src", url);
+
+                    DivError.Visible = false;
+                    DivSucess.Visible = true;
 
                 }
                 catch (WebExException err)
                 {
+                    
                     spanError.InnerText = err.Message;
                 }
             }
